@@ -121,7 +121,7 @@ body.v3d #game3d{display:block}
 @media (prefers-reduced-motion:reduce){#raceBtn.pulse{animation:none;box-shadow:0 0 0 3px var(--paper),0 0 0 6px var(--accent)}}
 #welcome{z-index:32}
 .sheet .wbox{width:min(380px,100%);gap:10px}
-.wbox h2{font-size:21px;line-height:1.15;letter-spacing:.03em;text-align:center}
+.wbox h2{font-size:21px;line-height:1.15;letter-spacing:.03em;text-align:center;text-wrap:balance}
 .wart{display:flex;justify-content:center}
 #wCv{width:240px;height:140px;display:block;border-radius:10px;border:1px solid rgba(255,255,255,.28);background:var(--paper)}
 .wtxt{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -153,9 +153,75 @@ body.v3d #game3d{display:block}
   .wbtn{flex-direction:row}
   .wbtn .btn{width:auto;flex:1 1 0;padding:0 8px}
   .linkbtn{align-self:flex-start;padding:0 4px;min-height:30px}
-  #results .box{width:min(700px,100%);flex-direction:row;gap:18px;align-items:stretch}
+  #results .box{width:min(700px,100%);flex-direction:row;flex-wrap:wrap;gap:10px 18px;align-items:stretch}
   #results .box>div{flex:1 1 0}
+  #results .box>#chRes{flex:1 1 100%}
+  #results .laps{gap:3px}#results .laps div{padding:4px 10px;font-size:14px}
+  #results .res-total{font-size:44px}
+  #results .rl,#results .rr{gap:8px}
+  #results .mt{padding:6px 4px 5px;gap:2px}#results .mt .ic{width:22px;height:22px}
   .rr{justify-content:flex-end}
+}
+
+/* garage + challenge */
+.btn .dot{width:12px;height:12px;border-radius:50%;margin-right:7px;border:1.5px solid var(--ink);background:var(--accent);flex:none}
+#garage,#chSheet{z-index:36}
+.sheet .gbox{width:min(480px,100%);display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:'head' 'body' 'foot';gap:10px;overflow:hidden;padding:14px}
+.gbox h2{grid-area:head;align-self:center}
+.gbody{grid-area:body;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:14px;padding:2px 3px 4px 2px;overscroll-behavior:contain}
+.gc1,.gc2,.gc3{display:flex;flex-direction:column;gap:12px;min-width:0}
+.gfoot{grid-area:foot;display:flex;gap:8px}
+.gfoot .btn{min-height:46px;padding:0 18px}
+.gfoot .primary{flex:1 1 auto;font-size:17px}
+.gpv{position:sticky;top:-2px;z-index:3;background:#0E141B;padding-bottom:2px}
+#gPrev,#gDoodle{display:block;width:100%;border-radius:12px}
+#gPrev{aspect-ratio:2/1;border:1px solid rgba(255,255,255,.22)}
+#gDoodle{aspect-ratio:2/1;max-width:340px;margin:0 auto;border:1.5px solid rgba(255,255,255,.35);background:#F3F6F8;touch-action:none;cursor:crosshair;border-radius:8px}
+.grow{display:flex;align-items:center;gap:10px}
+.gname{flex:1 1 auto;min-width:0;font:700 21px/1.15 var(--display);letter-spacing:.02em}
+.gnum{flex:1 1 auto;text-align:center;font:700 26px/1 var(--display);font-variant-numeric:tabular-nums}
+.gl{display:block;font:600 11px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+.grow .gl{margin:0;flex:none;width:64px}
+.sw{display:flex;flex-wrap:wrap;gap:4px}
+.swb{width:32px;height:32px;border-radius:50%;padding:0;border:2px solid rgba(255,255,255,.4);background:var(--c);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#16212C}
+.swb[aria-pressed="true"]{box-shadow:0 0 0 2px #0E141B,0 0 0 5px #fff}
+.swb svg{width:20px;height:20px}
+.chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.pc{display:flex;align-items:center;justify-content:center;padding:4px;border-radius:10px;background:#17202a;border:2px solid rgba(255,255,255,.2);cursor:pointer;min-height:44px}
+.pc[aria-pressed="true"]{border-color:var(--accent);background:#2a1a12}
+.pc canvas{width:100%;max-width:64px;aspect-ratio:2/1;display:block}
+.gtools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.gtools .btn{min-height:36px;padding:0 12px;font-size:12px}
+.sheet .btn.round{background:#1b2630}
+.sheet .cbox{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:'h' 'img' 'side';gap:10px;width:min(460px,100%)}
+.cbox h2{grid-area:h}
+.cimg{grid-area:img;display:block;width:100%;height:auto;aspect-ratio:1;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:#E9EEF2;min-height:0}
+.cside{grid-area:side;display:flex;flex-direction:column;gap:10px;min-width:0}
+.cside .wsub{text-align:left}
+.cside .btn{min-height:44px}
+.chres{font:700 22px/1.15 var(--display);letter-spacing:.01em;padding:10px 12px;border-radius:12px;background:#17202a;border:1.5px solid var(--good);color:var(--good)}
+.chres.lose{border-color:var(--accent);color:#FFB08F}
+.nudge{display:flex;align-items:center;gap:8px;background:#17202a;border:1.5px dashed rgba(255,255,255,.32);border-radius:999px;padding:4px 4px 4px 14px;font:500 13px/1.2 var(--body)}
+.nudge span{flex:1 1 auto}
+.nudge .btn{min-height:34px;padding:0 14px;font-size:12px;border-radius:999px}
+.btn.ch{border-color:var(--accent);color:#fff;font-family:var(--display);font-weight:700;font-size:15px}
+#confetti{position:fixed;inset:0;z-index:45;pointer-events:none;width:100%;height:100%}
+#rivalLbl{position:fixed;z-index:11;left:0;top:0;pointer-events:none;background:rgba(14,20,27,.84);color:#fff;font:600 12px/1 var(--body);padding:5px 9px;border-radius:999px;white-space:nowrap;border:1px solid rgba(255,255,255,.28)}
+.wcar{display:flex;justify-content:center}
+#wCar{width:160px;height:80px;display:block}
+.wsub.big{font:700 24px/1.1 var(--display);color:var(--text);letter-spacing:.02em}
+@media (orientation:landscape) and (max-height:480px){
+  .sheet .gbox{width:min(840px,100%);grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto minmax(0,1fr);grid-template-areas:'head foot' 'body body';gap:8px 12px;padding:12px 14px}
+  .gfoot .btn{min-height:40px}
+  .gfoot .primary{flex:none;font-size:15px;padding:0 26px}
+  .gbody{display:grid;grid-template-columns:minmax(0,220px) minmax(0,302px) minmax(0,1fr);gap:14px;align-items:start}
+  .gpv{position:static;padding:0}
+  .swb{width:30px;height:30px}
+  .pc{min-height:38px}
+  .gc1,.gc2,.gc3{gap:10px}
+  .sheet .cbox{width:min(760px,100%);grid-template-columns:min(326px,calc(100vh - 64px)) minmax(0,1fr);grid-template-areas:'img h' 'img side';align-items:start;column-gap:16px}
+  .cbox h2{align-self:end}
+  #chSheet textarea{height:60px}
 }
 </style>
 
@@ -174,6 +240,7 @@ body.v3d #game3d{display:block}
   <button class="btn" id="undoBtn">Undo</button>
   <button class="btn" id="clearBtn">Clear</button>
   <label class="btn" id="photoLbl">Photo<input type="file" accept="image/*" id="photoIn"></label>
+  <button class="btn" id="garageBtn"><i class="dot" id="garageDot"></i>Garage</button>
   <button class="btn" id="shareBtn">Share</button>
   <button class="btn" id="viewBtn" aria-pressed="true">3D view</button>
   <button class="btn round" id="helpBtn" aria-label="How to play">?</button>
@@ -189,6 +256,7 @@ body.v3d #game3d{display:block}
   <div id="stats">No track yet</div>
   <div id="hint"></div>
   <div class="seg" id="clsSeg" role="group" aria-label="Speed class">
+    <button class="btn" data-cls="3" aria-pressed="false" title="Slowest and grippiest. For the youngest drivers.">Junior</button>
     <button class="btn" data-cls="0" aria-pressed="false" title="Slower and grippier. Good for learning a track.">Rookie</button>
     <button class="btn" data-cls="1" aria-pressed="true" title="The standard car.">Pro</button>
     <button class="btn" data-cls="2" aria-pressed="false" title="Faster and less forgiving.">Elite</button>
@@ -200,7 +268,7 @@ body.v3d #game3d{display:block}
   <div class="hud-tl"><div class="panel"><div class="lap" id="lapV">LAP 1/3</div><div class="spd" id="spdV">0 km/h</div></div><div class="panel" id="starP" aria-label="Stars collected"><b>&#9733;</b><span id="starV">0/0</span><span id="plus" hidden>+1</span></div></div>
   <div id="misBanner" role="status" hidden></div>
   <div class="hud-tc"><div class="panel" id="timeV">0:00.00</div><div id="deltaV"></div><div id="warn" hidden>Missed checkpoint. Head back.</div></div>
-  <div class="hud-tr"><div class="panel best"><span>BEST</span><b id="bestV">--</b></div><div class="hbtns"><button id="hudView">3D</button><button id="editBtn">&#10005; Edit</button></div></div>
+  <div class="hud-tr"><div class="panel best"><span id="bestL">BEST</span><b id="bestV">--</b></div><div class="hbtns"><button id="hudView">3D</button><button id="editBtn">&#10005; Edit</button></div></div>
   <div id="caption" hidden>Hold left / right to steer &middot; hold both to brake</div>
   <div class="pad l" id="padL">&#8249;</div><div class="pad r" id="padR">&#8250;</div>
 </div>
@@ -208,6 +276,7 @@ body.v3d #game3d{display:block}
 
 <div class="sheet" id="results" hidden role="dialog" aria-modal="true" aria-label="Results">
   <div class="box">
+    <div class="chres" id="chRes" role="status" hidden></div>
     <div class="rl">
       <div class="res-label" id="resLabel">FINISHED</div>
       <div class="res-total" id="resTotal">0:00.00</div>
@@ -217,8 +286,9 @@ body.v3d #game3d{display:block}
       <div class="mis" id="resMis"></div>
     </div>
     <div class="rr">
+      <div class="nudge" id="nudge" hidden><span>Paint your car in the Garage</span><button class="btn" id="nudgeBtn">Open Garage</button></div>
       <div class="cta" id="resCta" hidden><h3 id="ctaT"></h3><p id="ctaP"></p><button class="btn primary" id="ctaBtn"></button></div>
-      <div class="row"><button class="btn" id="again">Race again</button><button class="btn" id="resEdit">Edit track</button><button class="btn" id="resShare">Share track</button></div>
+      <div class="row"><button class="btn" id="again">Race again</button><button class="btn ch" id="chBtn">Challenge a friend</button><button class="btn" id="resEdit">Edit track</button><button class="btn" id="resShare">Share track</button></div>
     </div>
   </div>
 </div>
@@ -228,6 +298,7 @@ body.v3d #game3d{display:block}
     <h2 id="wTitle">Draw it. Race it. Send it.</h2>
     <div class="wart"><canvas id="wCv" width="240" height="140" role="img" aria-label="A finger draws a loop. The line turns into a road and a car drives around it."></canvas></div>
     <div class="wtxt">
+      <div class="wcar" id="wCarRow" hidden><canvas id="wCar" width="160" height="80" role="img" aria-label="The challenger's painted car"></canvas></div>
       <p class="wsub" id="wSub" hidden></p>
       <ol class="how" id="wHow">
         <li><svg viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="#0E141B"/><path d="M7 18C4.5 11.5 10 7 15.5 8.5 21.5 10 23.5 15 19.5 19 15.5 22.5 8.5 22.5 7 18Z" fill="none" stroke="#F3F6F8" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="2.4" fill="#FF5B1F"/></svg><div><b>Draw a loop</b><span>Pick Road and draw with your finger.</span></div></li>
@@ -254,6 +325,45 @@ body.v3d #game3d{display:block}
     <div class="row"><button class="btn" id="shareClose">Close</button></div>
   </div>
 </div>
+
+<div class="sheet" id="garage" hidden role="dialog" aria-modal="true" aria-labelledby="gTitle">
+  <div class="box gbox">
+    <h2 id="gTitle">GARAGE</h2>
+    <div class="gbody">
+      <div class="gc1">
+        <div class="gpv"><canvas id="gPrev" role="img" aria-label="Your car from above"></canvas></div>
+        <div class="grow"><div class="gname" id="gName" aria-live="polite"></div><button class="btn round" id="gDice" aria-label="New driver name"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5" fill="#fff" stroke="#16212C" stroke-width="1.6"/><circle cx="8.3" cy="8.3" r="1.7" fill="#16212C"/><circle cx="15.7" cy="8.3" r="1.7" fill="#16212C"/><circle cx="12" cy="12" r="1.7" fill="#16212C"/><circle cx="8.3" cy="15.7" r="1.7" fill="#16212C"/><circle cx="15.7" cy="15.7" r="1.7" fill="#16212C"/></svg></button></div>
+        <div class="grow"><span class="gl">Number</span><button class="btn round" id="gNumM" aria-label="Number down">&minus;</button><b class="gnum" id="gNum">7</b><button class="btn round" id="gNumP" aria-label="Number up">+</button></div>
+      </div>
+      <div class="gc2">
+        <div><span class="gl">Body colour</span><div class="sw" id="gBody" role="group" aria-label="Body colour"></div></div>
+        <div><span class="gl">Detail colour</span><div class="sw" id="gDet" role="group" aria-label="Detail colour"></div></div>
+        <div><span class="gl">Pattern</span><div class="chips" id="gPat" role="group" aria-label="Pattern"></div></div>
+      </div>
+      <div class="gc3">
+        <div><span class="gl">Doodle</span><canvas id="gDoodle" role="img" aria-label="Doodle pad. Paint on your car with a finger."></canvas></div>
+        <div class="gtools" id="gTools" role="group" aria-label="Doodle colour"></div>
+      </div>
+    </div>
+    <div class="gfoot"><button class="btn" id="gCancel">Cancel</button><button class="btn primary" id="gDone">Done</button></div>
+  </div>
+</div>
+
+<div class="sheet" id="chSheet" hidden role="dialog" aria-modal="true" aria-labelledby="chTitle">
+  <div class="box cbox">
+    <h2 id="chTitle">CHALLENGE A FRIEND</h2>
+    <img class="cimg" id="chImg" alt="Your Beat My Time card">
+    <div class="cside">
+      <p class="wsub" id="chTxt"></p>
+      <div class="row"><button class="btn primary" id="chShare">Share</button><button class="btn" id="chCopy">Copy link</button></div>
+      <label class="l" for="chLink">Challenge link</label>
+      <textarea id="chLink" readonly></textarea>
+      <div class="row"><button class="btn" id="chClose">Close</button></div>
+    </div>
+  </div>
+</div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div id="rivalLbl" hidden></div>
 <div id="toast" hidden></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -268,6 +378,8 @@ const CLASSES = [
   { name: 'Rookie', tip: 'Slower and grippier. Good for learning a track.', v: 0.75, e: 0.85, g: 1.25, t: 0.92 },
   { name: 'Pro', tip: 'The standard car.', v: 1, e: 1, g: 1, t: 1 },
   { name: 'Elite', tip: 'Faster and less forgiving.', v: 1.2, e: 1.25, g: 1.0, t: 1.04 },
+  // index 3 (shown first in the picker): appended so older share codes keep their class numbers
+  { name: 'Junior', tip: 'Slowest and grippiest. For the youngest drivers.', v: 0.55, e: 0.7, g: 1.4, t: 0.85 },
 ];
 // stamps (local frame: +x along the stamp angle)
 const ST_JUMP = { l: 18, w: 30 }, ST_BOOST = 18, ST_SPL = { rx: 15, ry: 11 }, ST_MAX = 24, G_AIR = 620, STAR_R = 9;
@@ -303,7 +415,7 @@ let mode = 'draw', def = null, T = null, code = '', geo = '', cls = 1, K = null;
 let view = { s: 1, ox: 0, oy: 0 };
 let stampT = (() => { const v = parseInt(lsGet('sr:stamp'), 10); return v >= 1 && v <= 3 ? v : 1; })();
 let tool = 'road', stroke = null, undoStack = [], dirty = true, userTouched = false;
-let race = null, skids = [], sessionRaced = false;
+let race = null, skids = [], sessionRaced = false, sessionFinished = false, challenge = null;
 const bests = {};
 let origin = null, fail = null, failT = 0, welcomeMode = null, welcomeOpener = null, wRaf = 0, tipT = 0, tipDelay = 0, pulseT = 0, RM = false;
 const undoOrig = [], mem = {};
@@ -316,6 +428,93 @@ const keys = { l: false, r: false, b: false };
 const pointers = new Map();
 const cam = { x: 0, y: 0, s: 1 };
 let grassPat, gravelPat;
+
+// ---------- garage data: profile, names, livery drawing ----------
+const BODY_COLS = ['#FF5B1F', '#E63946', '#FFD23F', '#3BB273', '#2F80ED', '#8E5CF7', '#FF77B7', '#F2F2EE'];
+const DET_COLS = BODY_COLS.concat(['#16212C']);
+const COL_NAMES = ['Orange', 'Red', 'Yellow', 'Green', 'Blue', 'Purple', 'Pink', 'White', 'Ink'];
+const PATTERNS = ['None', 'Stripes', 'Flames', 'Dots', 'Checker', 'Bolt'];
+// names come only from these lists (stored as indices), so there is never free text
+const ADJ = ['Speedy', 'Turbo', 'Wobbly', 'Zippy', 'Sneaky', 'Bouncy', 'Mighty', 'Sparkly', 'Dizzy', 'Rocket', 'Giggly', 'Fuzzy', 'Jolly', 'Lucky', 'Cosmic', 'Sunny', 'Snappy', 'Cheeky', 'Breezy', 'Blazing', 'Fluffy', 'Funky', 'Super', 'Wild', 'Happy', 'Nifty', 'Peppy', 'Daring', 'Swift', 'Groovy'];
+const ANI = ['Fox', 'Otter', 'Panda', 'Gecko', 'Llama', 'Badger', 'Penguin', 'Tiger', 'Koala', 'Hedgehog', 'Narwhal', 'Falcon', 'Moose', 'Walrus', 'Lynx', 'Parrot', 'Dolphin', 'Raccoon', 'Zebra', 'Bunny', 'Turtle', 'Cheetah', 'Octopus', 'Pelican', 'Monkey', 'Sloth', 'Yak', 'Wombat', 'Puffin', 'Gazelle'];
+const DW = 32, DH = 16, DOODLE_HEX = 256, NO_DOODLE = '0'.repeat(DOODLE_HEX);
+const nameOf = n => ADJ[n[0]] + ' ' + ANI[n[1]];
+const rndInt = n => Math.floor(Math.random() * n);
+const isInt = (v, a, b) => Number.isInteger(v) && v >= a && v <= b;
+function validLivery(p) {
+  return !!p && isInt(p.body, 0, 7) && isInt(p.detail, 0, 8) && isInt(p.pattern, 0, PATTERNS.length - 1) && isInt(p.num, 1, 99) && typeof p.doodle === 'string' && /^[0-9a-f]{256}$/.test(p.doodle);
+}
+function validProfile(p) { return !!p && Array.isArray(p.name) && p.name.length === 2 && isInt(p.name[0], 0, ADJ.length - 1) && isInt(p.name[1], 0, ANI.length - 1) && validLivery(p); }
+function cleanProfile(p) { return { name: [p.name[0], p.name[1]], body: p.body, detail: p.detail, pattern: p.pattern, num: p.num, doodle: p.doodle }; }
+function randomProfile() { const body = rndInt(8); return { name: [rndInt(ADJ.length), rndInt(ANI.length)], body, detail: body === 7 ? 8 : 7, pattern: 0, num: 1 + rndInt(99), doodle: NO_DOODLE }; }
+let profile = (() => {
+  try { const p = JSON.parse(lsGet('sr:profile')); if (validProfile(p)) return cleanProfile(p); } catch (e) {}
+  const p = randomProfile(); lsSet('sr:profile', JSON.stringify(p)); return p;
+})();
+function doodleDecode(hex) { const a = new Uint8Array(DW * DH); for (let b = 0; b < 128; b++) { const v = parseInt(hex.substr(b * 2, 2), 16) || 0; for (let k = 0; k < 4; k++) a[b * 4 + k] = (v >> (k * 2)) & 3; } return a; }
+function doodleEncode(a) { let s = ''; for (let b = 0; b < 128; b++) { let v = 0; for (let k = 0; k < 4; k++) v |= (a[b * 4 + k] & 3) << (k * 2); s += v.toString(16).padStart(2, '0'); } return s; }
+const livKeyOf = p => [p.body, p.detail, p.pattern, p.num, p.doodle].join('|');
+
+// All livery drawing happens in car units: x -7..7 (nose at +x), y -3.5..3.5. Caller sets the transform.
+function roundel(c, p, cx, cy) {
+  c.save(); c.fillStyle = '#fff'; c.beginPath(); c.arc(cx, cy, 2.25, 0, 6.2832); c.fill();
+  c.strokeStyle = C_INK; c.lineWidth = 0.28; c.stroke();
+  const s = String(p.num), fs = s.length > 1 ? 2.55 : 3.3;
+  c.fillStyle = C_INK; c.font = '700 ' + fs + "px 'Chakra Petch', system-ui, sans-serif"; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(s, cx, cy + fs * 0.07);
+  c.restore();
+}
+function polyFill(c, pts) { c.beginPath(); pts.forEach((q, i) => i ? c.lineTo(q[0], q[1]) : c.moveTo(q[0], q[1])); c.closePath(); c.fill(); }
+const FLAME = [[7, -3.5], [2.0, -3.5], [4.3, -2.6], [1.0, -1.7], [4.3, -0.9], [0.1, 0], [4.3, 0.9], [1.0, 1.7], [4.3, 2.6], [2.0, 3.5], [7, 3.5]];
+const BOLT = [[0.35, -1], [-0.45, 0.1], [-0.05, 0.1], [-0.35, 1], [0.45, -0.15], [0.05, -0.15]].map(q => [q[1] * 6.2, q[0] * 5.2]);
+function liveryDraw(c, p, round) {
+  const body = BODY_COLS[p.body], det = DET_COLS[p.detail];
+  c.save(); c.beginPath(); if (round) rr(c, -7, -3.5, 14, 7, 2); else c.rect(-7, -3.5, 14, 7); c.clip();
+  c.fillStyle = body; c.fillRect(-7, -3.5, 14, 7);
+  c.fillStyle = det;
+  if (p.pattern === 1) { c.fillRect(-7, -2.05, 14, 0.95); c.fillRect(-7, 1.1, 14, 0.95); }
+  else if (p.pattern === 2) { polyFill(c, FLAME); c.fillStyle = 'rgba(255,255,255,.4)'; c.save(); c.translate(7, 0); c.scale(0.6, 0.55); c.translate(-7, 0); polyFill(c, FLAME); c.restore(); }
+  else if (p.pattern === 3) { for (let r = -1; r <= 1; r++) for (let i = 0; i < 6; i++) { c.beginPath(); c.arc(-5.6 + i * 2.24 + (r & 1 ? 1.12 : 0), r * 2.3, 0.62, 0, 6.2832); c.fill(); } }
+  else if (p.pattern === 4) { for (let ix = 0; ix < 10; ix++) for (let iy = 0; iy < 5; iy++) { const cx = -7 + (ix + 0.5) * 1.4; if ((ix + iy) % 2 === 0 && (cx < -4.2 || cx > 3.5)) c.fillRect(-7 + ix * 1.4, -3.5 + iy * 1.4, 1.4, 1.4); } }
+  else if (p.pattern === 5) { polyFill(c, BOLT); c.strokeStyle = 'rgba(22,33,44,.55)'; c.lineWidth = 0.22; c.lineJoin = 'round'; c.stroke(); }
+  const dpx = p.dpx || (p.doodle && p.doodle !== NO_DOODLE ? doodleDecode(p.doodle) : null);
+  if (dpx) { const cw = 14 / DW; for (let j = 0; j < dpx.length; j++) { const v = dpx[j]; if (!v) continue; c.fillStyle = v === 1 ? '#fff' : v === 2 ? C_INK : det; c.fillRect(-7 + (j % DW) * cw, -3.5 + ((j / DW) | 0) * cw, cw + 0.02, cw + 0.02); } }
+  if (p.num != null && !p.noNum) roundel(c, p, -1, 0);
+  // toy gloss
+  const g = c.createLinearGradient(0, -3.5, 0, 3.5); g.addColorStop(0, 'rgba(255,255,255,.26)'); g.addColorStop(0.45, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(0,0,0,.22)');
+  c.fillStyle = g; c.fillRect(-7, -3.5, 14, 7);
+  c.restore();
+  if (round) { c.save(); rr(c, -7 + 0.15, -3.5 + 0.15, 13.7, 6.7, 1.9); c.strokeStyle = 'rgba(22,33,44,.55)'; c.lineWidth = 0.3; c.stroke(); c.restore(); }
+}
+function liveryCanvas(p, w, round) {
+  const h = w / 2, cvs = document.createElement('canvas'); cvs.width = w; cvs.height = h; const c = cvs.getContext('2d');
+  c.scale(w / 14, w / 14); c.translate(7, 3.5); liveryDraw(c, p, round); return cvs;
+}
+// 3D roof: the part of the livery that sits under the roof (x -3.3..1.9, y -2.8..2.8), 20 px per unit
+function roofCanvas(p) {
+  const cvs = document.createElement('canvas'); cvs.width = 104; cvs.height = 112; const c = cvs.getContext('2d');
+  c.scale(20, 20); c.translate(3.3, 2.8); liveryDraw(c, p, false); return cvs;
+}
+function carWheels(c) { c.fillStyle = '#000'; for (const wx of [-4.2, 4.2]) for (const wy of [-3.8, 3.8]) c.fillRect(wx - 1.6, wy - 0.8, 3.2, 1.6); }
+function carGlass(c) { c.fillStyle = 'rgba(20,26,34,.92)'; c.fillRect(1.4, -2.4, 2.2, 4.8); }
+// a whole painted car (vector, crisp at any size) centred at cx,cy; k = pixels per car unit
+function paintCarFlat(c, p, cx, cy, k, ang, alpha) {
+  c.save(); c.globalAlpha = alpha == null ? 1 : alpha; c.translate(cx, cy); c.rotate(ang || 0); c.scale(k, k);
+  c.fillStyle = 'rgba(0,0,0,.25)'; rr(c, -7 + 0.5, -3.5 + 0.8, 14, 7, 2); c.fill();
+  carWheels(c); liveryDraw(c, p, true); carGlass(c);
+  c.restore();
+}
+let livKey = '', liv2d = null;
+function myLiv2d() { const k = livKeyOf(profile); if (k !== livKey) { livKey = k; liv2d = liveryCanvas(profile, 128, true); } return liv2d; }
+function rivalLiv(ch) { return ch._cv || (ch._cv = liveryCanvas(ch.liv, 128, true)); }
+function setProfile(p) {
+  if (!validProfile(p)) throw new Error('bad profile');
+  profile = cleanProfile(p); lsSet('sr:profile', JSON.stringify(profile)); onProfileChanged();
+}
+function onProfileChanged() {
+  const d = $('garageDot'); if (d) d.style.background = BODY_COLS[profile.body];
+  if (typeof syncCarLivery3D === 'function') syncCarLivery3D();
+  dirty = true;
+}
 
 // ---------- geometry ----------
 function resample(pts, sp, closed) {
@@ -575,7 +774,7 @@ function encodeTrack(d) {
   const i16 = v => u16(clamp(Math.round(v), -32768, 32767) & 65535), i8 = v => b.push(clamp(Math.round(v), -127, 127) & 255);
   const poly = pts => { i16(pts[0][0]); i16(pts[0][1]); for (let i = 1; i < pts.length; i++) { i8(pts[i][0] - pts[i - 1][0]); i8(pts[i][1] - pts[i - 1][1]); } };
   const sts = d.stamps || [];
-  if (sts.length) { u8(3); u8(d.cls === 0 || d.cls === 2 ? d.cls : 1); } else if (d.cls === 0 || d.cls === 2) { u8(2); u8(d.cls); } else u8(1);
+  if (sts.length) { u8(3); u8(d.cls === 0 || d.cls === 2 || d.cls === 3 ? d.cls : 1); } else if (d.cls === 0 || d.cls === 2 || d.cls === 3) { u8(2); u8(d.cls); } else u8(1);
   u16(d.ctrl.length); poly(d.ctrl);
   u8(d.patches.length);
   for (const p of d.patches) { u8(p.t); u16(p.pts.length); poly(p.pts); }
@@ -593,7 +792,7 @@ function decodeTrack(s) {
   const i16 = () => { const v = u16(); return v > 32767 ? v - 65536 : v; }, i8 = () => { const v = u8(); return v > 127 ? v - 256 : v; };
   const poly = n => { const pts = [[i16(), i16()]]; for (let i = 1; i < n; i++) { const l = pts[i - 1]; pts.push([l[0] + i8(), l[1] + i8()]); } return pts; };
   const ver = u8(); let dcls;
-  if (ver === 2 || ver === 3) { dcls = u8(); if (dcls > 2) throw new Error('bad'); } else if (ver !== 1) throw new Error('bad');
+  if (ver === 2 || ver === 3) { dcls = u8(); if (dcls > 3) throw new Error('bad'); } else if (ver !== 1) throw new Error('bad');
   const n = u16(); if (n < 12 || n > 2000) throw new Error('bad');
   const ctrl = poly(n), pc = u8(); if (pc > 30) throw new Error('bad');
   const patches = [];
@@ -614,6 +813,76 @@ function stampsOf(d) { return d && d.stamps ? d.stamps : []; }
 function stampSuffix(d) { const s = stampsOf(d); return s.length ? ':s' + fnv(s.map(p => p.t + ',' + p.x + ',' + p.y + ',' + angByte(p.a)).join(';')) : ''; }
 function trackId() { return fnv(geo) + stampSuffix(def); }
 
+// ---------- challenge code ('c' + hex; the link hash is '#c...') ----------
+// bytes: u8 ver(1) | u8 class | u32 total ticks | u8 nameA | u8 nameB | u8 body | u8 detail | u8 pattern | u8 number | 128 doodle bytes
+//        | u16 trackLen | track bytes (exactly the bytes behind the 't' code) | ghost: u16 count N | i16 x0 | i16 y0 | u8 heading0
+//        | then for k=1..N-1: i8 dx | i8 dy | u8 heading.  Samples are 10 Hz (every 6 ticks), N = floor(total/6)+1.
+// dx/dy are steps in whole world units, clamped to +-127 (a car never moves 12.7 units per tick; the encoder follows
+// its own decoded position so a clamp can never drift). heading = round(angle / 2pi * 256) & 255.
+const CH_VER = 1, CH_STEP = 6, CH_MAX_TICKS = 60 * 3600;
+function hexToBytes(h) { const b = new Array(h.length >> 1); for (let i = 0; i < b.length; i++) b[i] = parseInt(h.substr(i * 2, 2), 16); return b; }
+function checkChallenge(o) {
+  const bad = () => { throw new Error('bad challenge'); };
+  if (!o || !isInt(o.cls, 0, 3) || !isInt(o.total, 1, CH_MAX_TICKS) || !Array.isArray(o.name) || o.name.length !== 2 || !isInt(o.name[0], 0, ADJ.length - 1) || !isInt(o.name[1], 0, ANI.length - 1) || !validLivery(o.liv)) bad();
+  if (typeof o.track !== 'string' || !/^t([0-9a-f]{2})+$/.test(o.track) || o.track.length > 2 * 65535 + 1) bad();
+  try { decodeTrack(o.track); } catch (e) { bad(); }
+  const n = Math.floor(o.total / CH_STEP) + 1;
+  if (!Array.isArray(o.gx) || !Array.isArray(o.gy) || !Array.isArray(o.ga) || o.gx.length !== n || o.gy.length !== n || o.ga.length !== n) bad();
+  for (let k = 0; k < n; k++) if (!isInt(o.gx[k], -32768, 32767) || !isInt(o.gy[k], -32768, 32767) || !isInt(o.ga[k], 0, 255)) bad();
+}
+function encodeChallenge(o) {
+  checkChallenge(o);
+  const b = [], u8 = v => b.push(v & 255), u16 = v => b.push(v & 255, (v >> 8) & 255), u32 = v => { u16(v & 65535); u16((v >>> 16) & 65535); };
+  const i16 = v => u16(v & 65535), i8 = v => b.push(v & 255);
+  u8(CH_VER); u8(o.cls); u32(o.total); u8(o.name[0]); u8(o.name[1]);
+  u8(o.liv.body); u8(o.liv.detail); u8(o.liv.pattern); u8(o.liv.num);
+  hexToBytes(o.liv.doodle).forEach(u8);
+  const tb = hexToBytes(o.track.slice(1)); u16(tb.length); tb.forEach(u8);
+  const n = o.gx.length; u16(n); i16(o.gx[0]); i16(o.gy[0]); u8(o.ga[0]);
+  let rx = o.gx[0], ry = o.gy[0];
+  for (let k = 1; k < n; k++) {
+    const dx = clamp(o.gx[k] - rx, -127, 127), dy = clamp(o.gy[k] - ry, -127, 127); rx += dx; ry += dy; i8(dx); i8(dy); u8(o.ga[k]);
+  }
+  return 'c' + b.map(v => v.toString(16).padStart(2, '0')).join('');
+}
+function decodeChallenge(s) {
+  const bad = () => { throw new Error('bad challenge'); };
+  if (typeof s !== 'string') bad();
+  s = s.trim(); if (!/^c([0-9a-f]{2})+$/.test(s)) bad();
+  const bytes = hexToBytes(s.slice(1)); let pos = 0;
+  const need = n => { if (pos + n > bytes.length) bad(); };
+  const u8 = () => { need(1); return bytes[pos++]; }, u16 = () => { need(2); const v = bytes[pos] | (bytes[pos + 1] << 8); pos += 2; return v; };
+  const u32 = () => { const a = u16(), b = u16(); return (a + b * 65536); };
+  const i16 = () => { const v = u16(); return v > 32767 ? v - 65536 : v; }, i8 = () => { const v = u8(); return v > 127 ? v - 256 : v; };
+  if (u8() !== CH_VER) bad();
+  const cls = u8(), total = u32(), name = [u8(), u8()], body = u8(), detail = u8(), pattern = u8(), num = u8();
+  need(128); let doodle = ''; for (let i = 0; i < 128; i++) doodle += bytes[pos++].toString(16).padStart(2, '0');
+  const tl = u16(); if (tl < 8) bad(); need(tl); let track = 't'; for (let i = 0; i < tl; i++) track += bytes[pos++].toString(16).padStart(2, '0');
+  const n = u16(); if (n < 2 || n !== Math.floor(total / CH_STEP) + 1) bad();
+  const gx = [i16()], gy = [i16()], ga = [u8()];
+  for (let k = 1; k < n; k++) { gx.push(gx[k - 1] + i8()); gy.push(gy[k - 1] + i8()); ga.push(u8()); }
+  if (pos !== bytes.length) bad();
+  const o = { cls, total, name, liv: { body, detail, pattern, num, doodle }, track, gx, gy, ga };
+  checkChallenge(o); return o;
+}
+// the challenger's ghost at a race tick: linear position between the 10 Hz samples, heading the short way round
+function chGhostAt(ch, t) {
+  // past the last 10 Hz sample (up to 5 more ticks of the run) the last segment is simply continued
+  const n = ch.gx.length, f = clamp(t / CH_STEP, 0, n - 1 + (CH_STEP - 1) / CH_STEP), i = Math.min(Math.floor(f), n - 2), u = f - i;
+  const a0 = ch.ga[i] / 256 * Math.PI * 2, a1 = ch.ga[i + 1] / 256 * Math.PI * 2; let d = a1 - a0; d -= Math.PI * 2 * Math.round(d / (Math.PI * 2));
+  return { x: ch.gx[i] + (ch.gx[i + 1] - ch.gx[i]) * u, y: ch.gy[i] + (ch.gy[i + 1] - ch.gy[i]) * u, a: a0 + d * u };
+}
+// the player's best run on this track + class, resampled to 10 Hz
+function makeChallengeObj() {
+  const b = def && loadBest(); if (!b || !b.ghost || b.ghost.length < b.total * 3 || b.total < CH_STEP) return null;
+  const n = Math.floor(b.total / CH_STEP) + 1, gx = [], gy = [], ga = [];
+  for (let k = 0; k < n; k++) {
+    const i = k === 0 ? 0 : (k * CH_STEP - 1) * 3;
+    gx.push(Math.round(b.ghost[i] / 10)); gy.push(Math.round(b.ghost[i + 1] / 10)); ga.push(Math.round(b.ghost[i + 2] / 1000 / (Math.PI * 2) * 256) & 255);
+  }
+  return { cls, total: b.total, name: profile.name.slice(), liv: { body: profile.body, detail: profile.detail, pattern: profile.pattern, num: profile.num, doodle: profile.doodle }, track: code, gx, gy, ga };
+}
+
 // ---------- best times ----------
 function bestKey() { return 'sr2:best:' + trackId() + (cls === 1 ? '' : ':c' + cls); }
 function misKey() { return 'sr2:mis:' + trackId(); }
@@ -628,6 +897,7 @@ function saveBest(b) { const k = bestKey(); bests[k] = b; lsSet(k, JSON.stringif
 
 // ---------- track state ----------
 function setDef(d, fit) {
+  challenge = null; // a challenge belongs to the track it came with; any new track drops it
   if (d) { if (d.cls == null) d.cls = cls; cls = d.cls; if (!d.stamps) d.stamps = []; }
   def = d; T = d ? buildTrack(d) : null; refreshCode();
   if (fit) fitView();
@@ -639,7 +909,7 @@ function refreshCode() {
   lsSet('sr:last', code);
 }
 function setClass(i) {
-  cls = clamp(i | 0, 0, 2);
+  cls = clamp(i | 0, 0, 3);
   if (def) { def.cls = cls; refreshCode(); }
   lsSet('sr:cls', String(cls)); updateUI();
 }
@@ -831,12 +1101,13 @@ function startRace() {
   race = { phase: 'count', cd: 0, tick: 0, car, nextGate: 1 % T.G, cls, lap: 0, splits: [], laps: [], lapStart: 0, ghost: [], best: loadBest(), delta: 0, deltaT: 0, goT: 0, doneT: 0, result: null, cap: !sessionRaced, warn: false,
     stars: T.stars.map(q => ({ x: q.x, y: q.y, got: false, k: 1 })), starsGot: 0, mis: T.missions.map(m => ({ id: m.id, text: m.text, short: m.short, target: m.target, prog: 0, done: false })), lapDirty: false, ev: [],
     stat: { boosts: 0, jumps: 0, landed: 0, splashes: 0, driftT: 0, maxZ: 0, air: [] } };
-  sessionRaced = true; skids = []; p2 = []; pointers.clear(); resetHudFx();
+  race.ch = challenge; if (challenge) ensureRival3D(challenge);
+  sessionRaced = true; skids = []; p2 = []; pointers.clear(); resetHudFx(); stopConfetti(); rivalLabel(false); syncCarLivery3D();
   cam.x = car.x; cam.y = car.y; cam.s = Math.min(W, H) / 300; dirty = true;
   G3.d = 0; G3.roll = G3.pitch = 0; G3.pvf = 0; skid3Clear(); applyView();
 }
 function exitRace() {
-  mode = 'draw'; document.body.classList.remove('race'); $('results').hidden = true; $('big').textContent = '';
+  mode = 'draw'; document.body.classList.remove('race'); $('results').hidden = true; $('big').textContent = ''; stopConfetti(); rivalLabel(false);
   pointers.clear(); applyView(); fitView(); updateUI(); dirty = true;
 }
 function clampB(c) {
@@ -988,6 +1259,8 @@ function finishRace() {
   if (mask & ~old) lsSet(misKey(), String(old | mask));
   r.result = { total, laps: r.laps.slice(), prev, newBest: nb, stars: r.starsGot, nStars: r.stars.length, mis: r.mis.map((m, i) => ({ id: m.id, text: m.short, done: m.done, fresh: m.done && !(old >> i & 1) })) };
   if (nb) saveBest({ total, splits: r.splits.slice(), laps: r.laps.slice(), ghost: r.ghost.slice() });
+  r.result.first = !sessionFinished; sessionFinished = true;
+  if (r.ch) r.result.ch = { name: nameOf(r.ch.name), win: total < r.ch.total, tie: total === r.ch.total, diff: Math.abs(total - r.ch.total) / 60 };
   updateUI();
 }
 function showResults() {
@@ -1005,11 +1278,20 @@ function showResults() {
     d.innerHTML = MIS_ICON[m.id] + '<svg class="ms" viewBox="0 0 24 24" aria-hidden="true"><path d="' + STAR_D + '"/></svg>';
     const t = document.createElement('span'); t.textContent = m.text; d.appendChild(t); mb.appendChild(d);
   });
-  const cta = $('resCta'), own = origin === 'own';
-  cta.hidden = !origin; cta.dataset.kind = own ? 'send' : 'make';
-  $('ctaT').textContent = own ? 'Challenge a friend' : 'Now make your own track';
-  $('ctaP').textContent = own ? 'Send the link and see who is faster.' : 'Draw a loop and race it in seconds.';
+  const cta = $('resCta'), own = origin === 'own', cr = res.ch, cb = $('chRes');
+  cta.hidden = !origin || !!cr; cta.dataset.kind = own ? 'send' : 'make';
+  $('ctaT').textContent = own ? 'Send your track' : 'Now make your own track';
+  $('ctaP').textContent = own ? 'Share the track code or link.' : 'Draw a loop and race it in seconds.';
   $('ctaBtn').textContent = own ? 'Send this track' : 'Draw a track';
+  cb.hidden = !cr;
+  if (cr) {
+    const d = cr.diff.toFixed(2);
+    cb.className = 'chres' + (cr.win ? '' : ' lose');
+    cb.textContent = cr.win ? 'You beat ' + cr.name + ' by ' + d + ' s!' : cr.tie ? 'A tie with ' + cr.name + '! Try again?' : cr.name + ' wins by ' + d + ' s. Try again?';
+    if (cr.win) confettiBurst();
+  }
+  $('chBtn').textContent = cr ? 'Challenge back' : 'Challenge a friend'; $('chBtn').hidden = !loadBest();
+  const nu = !cr && res.first && !flagGet('sr:garaged') && !flagGet('sr:nudge'); $('nudge').hidden = !nu; if (nu) flagSet('sr:nudge');
   $('results').hidden = false; pointers.clear(); $('again').focus();
 }
 
@@ -1030,7 +1312,7 @@ function camUpdate(dt) {
   const zt = Math.min(W, H) / 300 * (1 - 0.12 * Math.min(1, speed / 240));
   cam.s += (zt - cam.s) * Math.min(1, dt * 3);
 }
-function drawCar(c, x, y, a, color, alpha, z) {
+function drawCar(c, x, y, a, color, alpha, z, liv) {
   c.save(); c.globalAlpha = alpha;
   z = z || 0;
   if (z > 0.3) {
@@ -1038,10 +1320,9 @@ function drawCar(c, x, y, a, color, alpha, z) {
   }
   c.translate(x, y); c.rotate(a); if (z > 0.3) c.scale(1 + z / 60, 1 + z / 60);
   if (z <= 0.3) { c.fillStyle = 'rgba(0,0,0,.28)'; rr(c, -7 + 1.2, -3.5 + 1.8, 14, 7, 2); c.fill(); }
-  c.fillStyle = '#000'; for (const wx of [-4.2, 4.2]) for (const wy of [-3.8, 3.8]) c.fillRect(wx - 1.6, wy - 0.8, 3.2, 1.6);
-  c.fillStyle = color; rr(c, -7, -3.5, 14, 7, 2); c.fill();
-  c.fillStyle = 'rgba(20,26,34,.92)'; c.fillRect(1.4, -2.4, 2.2, 4.8);
-  c.fillStyle = '#fff'; c.fillRect(-5.5, -0.6, 6, 1.2);
+  carWheels(c);
+  if (liv) { c.imageSmoothingQuality = 'high'; c.drawImage(liv, -7, -3.5, 14, 7); carGlass(c); }
+  else { c.fillStyle = color; rr(c, -7, -3.5, 14, 7, 2); c.fill(); carGlass(c); c.fillStyle = '#fff'; c.fillRect(-5.5, -0.6, 6, 1.2); }
   c.restore();
 }
 // ----- stamps + stars (2D). t = seconds, 0 for the still editor look -----
@@ -1105,7 +1386,7 @@ function drawP2(c) {
   for (const q of p2) { const u = q.age / q.life; c.fillStyle = 'rgba(' + q.rgb + ',' + (0.9 * (1 - u)).toFixed(3) + ')'; c.beginPath(); c.arc(q.x, q.y, q.size * (1 - 0.4 * u), 0, 6.2832); c.fill(); }
 }
 function renderRace() {
-  const r = race, c = r.car, s = cam.s;
+  const r = race, c = r.car, s = cam.s; rivalLabel(false);
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = C_OOB; ctx.fillRect(0, 0, cv.width, cv.height);
   ctx.setTransform(DPR * s, 0, 0, DPR * s, DPR * (W / 2 - cam.x * s), DPR * (H / 2 - cam.y * s));
   const b = T.bounds; ctx.fillStyle = grassPat; ctx.fillRect(b.x, b.y, b.w, b.h);
@@ -1118,13 +1399,23 @@ function renderRace() {
   }
   ctx.globalAlpha = 1; const tt = performance.now() / 1000; drawStamps(ctx, tt); drawStars2D(ctx, tt); drawObstacles(ctx);
   if (r.phase !== 'done') { const g = T.gates[r.nextGate]; ctx.strokeStyle = 'rgba(255,214,10,.9)'; ctx.lineWidth = 2; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(g.ax, g.ay); ctx.lineTo(g.bx, g.by); ctx.stroke(); ctx.setLineDash([]); }
-  if (r.best && r.phase !== 'count') { const i = (r.tick - 1) * 3, gh = r.best.ghost; if (r.tick > 0 && i + 2 < gh.length) drawCar(ctx, gh[i] / 10, gh[i + 1] / 10, gh[i + 2] / 1000, '#fff', 0.35); }
-  drawCar(ctx, c.x, c.y, c.a, C_ACCENT, 1, c.z);
+  let rvq = null;
+  if (r.ch) { if (r.phase !== 'count') { rvq = chGhostAt(r.ch, r.tick); drawCar(ctx, rvq.x, rvq.y, rvq.a, '#fff', 0.6, 0, rivalLiv(r.ch)); } }
+  else if (r.best && r.phase !== 'count') { const i = (r.tick - 1) * 3, gh = r.best.ghost; if (r.tick > 0 && i + 2 < gh.length) drawCar(ctx, gh[i] / 10, gh[i + 1] / 10, gh[i + 2] / 1000, '#fff', 0.35); }
+  drawCar(ctx, c.x, c.y, c.a, C_ACCENT, 1, c.z, myLiv2d());
   drawP2(ctx);
   if (r.warn) {
     const g = T.gates[r.nextGate], ang = Math.atan2(g.y - c.y, g.x - c.x);
     ctx.save(); ctx.translate(c.x + Math.cos(ang) * 24, c.y + Math.sin(ang) * 24); ctx.rotate(ang);
     ctx.strokeStyle = '#FFD60A'; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(-4, -6); ctx.lineTo(3, 0); ctx.lineTo(-4, 6); ctx.stroke(); ctx.restore();
+  }
+  if (rvq) {
+    // name tag above the challenger's ghost (screen space, so it stays crisp)
+    const sx = W / 2 + (rvq.x - cam.x) * s, sy = H / 2 + (rvq.y - cam.y) * s - 9 * s - 6, txt = nameOf(r.ch.name);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.font = "600 12px 'Inter', system-ui, sans-serif"; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    const tw = ctx.measureText(txt).width + 18;
+    ctx.fillStyle = 'rgba(14,20,27,.84)'; rr(ctx, sx - tw / 2, sy - 11, tw, 22, 11); ctx.fill(); ctx.strokeStyle = 'rgba(255,255,255,.3)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = '#fff'; ctx.fillText(txt, sx, sy + 0.5);
   }
 }
 let hudCache = {}, banner = { q: [], until: 0 }, popUntil = 0;
@@ -1157,7 +1448,8 @@ function updateHud() {
   setTxt('lapV', 'LAP ' + Math.min(r.lap + 1, LAPS) + '/' + LAPS);
   setTxt('spdV', Math.round(Math.abs(c.vf) * UNIT_M * 3.6) + ' km/h · ' + CLASSES[r.cls].name);
   setTxt('timeV', fmt(r.tick / 60));
-  setTxt('bestV', r.best ? fmt(r.best.total / 60) : '--');
+  setTxt('bestL', r.ch ? 'BEAT' : 'BEST');
+  setTxt('bestV', r.ch ? fmt(r.ch.total / 60) : r.best ? fmt(r.best.total / 60) : '--');
   const dv = $('deltaV');
   if (r.deltaT > 0) { setTxt('deltaV', (r.delta >= 0 ? '+' : '-') + Math.abs(r.delta).toFixed(2)); dv.style.color = r.delta < 0 ? 'var(--good)' : 'var(--bad)'; } else setTxt('deltaV', '');
   $('warn').hidden = !r.warn;
@@ -1219,7 +1511,8 @@ function initShared() {
   S.grey = stdMat('#9AA0A6', 0.5, 0.3); S.red = new THREE.MeshStandardMaterial({ color: lc('#D01818'), emissive: lc('#701010'), roughness: 0.5 });
   S.light = new THREE.MeshStandardMaterial({ color: lc('#FFF6C8'), emissive: lc('#B8A860'), roughness: 0.4 });
   S.ghost = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35, depthWrite: false });
-  g.car = makeCarModel(false); g.gh = makeCarModel(true); sc.add(g.car.root); sc.add(g.gh.root); g.gh.root.visible = false;
+  g.car = makeCarModel('me'); g.gh = makeCarModel('best'); sc.add(g.car.root); sc.add(g.gh.root); g.gh.root.visible = false;
+  g.livKey = ''; syncCarLivery3D();
   // skid ring buffer
   const sk = g.sk = { pos: new Float32Array(SKN * 12), col: new Float32Array(SKN * 12), n: 0, head: 0, dirty: false };
   const sg = new THREE.BufferGeometry(), idx = new Uint16Array(SKN * 6);
@@ -1252,26 +1545,59 @@ function initShared() {
   const sft = new THREE.Mesh(S.box, am); sft.scale.set(9, 1.6, 3); sft.position.x = -3; const hd = new THREE.Mesh(new THREE.ConeGeometry(4.6, 8, 4).rotateZ(-Math.PI / 2), am); hd.position.x = 5.5; hd.scale.set(1, 0.4, 1);
   sft.castShadow = hd.castShadow = true; ar.add(sft, hd); ar.visible = false; sc.add(ar);
 }
-function makeCarModel(ghost) {
-  const S = G3.sh, mt = ghost ? { o: S.ghost, w: S.ghost, d: S.ghost, k: S.ghost, l: S.ghost, g: S.ghost, r: S.ghost } : { o: S.orange, w: S.white, d: S.dark, k: S.black, l: S.light, g: S.grey, r: S.red };
+// kind: 'me' (painted), 'best' (your own best, flat white ghost), 'rival' (a challenger, painted, 60% see-through)
+function makeCarModel(kind) {
+  const S = G3.sh, ghost = kind === 'best', rv = kind === 'rival';
+  const cl = m => { if (!rv) return m; const q = m.clone(); q.transparent = true; q.opacity = 0.6; return q; };
+  const M = ghost ? null : { side: cl(stdMat('#FF5B1F', 0.4, 0.15)), top: cl(stdMat('#FFFFFF', 0.4, 0.15)), roof: cl(stdMat('#FFFFFF', 0.4, 0.15)), spoil: cl(stdMat('#F2F2EE', 0.4, 0.15)) };
+  const mt = ghost ? { o: S.ghost, w: S.ghost, d: S.ghost, k: S.ghost, l: S.ghost, g: S.ghost, r: S.ghost } : { o: M.side, w: cl(S.white), d: cl(S.dark), k: cl(S.black), l: cl(S.light), g: cl(S.grey), r: cl(S.red) };
   const root = new THREE.Group(), ch = new THREE.Group(); root.add(ch);
-  const box = (par, mat, x, y, z, sx, sy, sz) => { const m = new THREE.Mesh(S.box, mat); m.position.set(x, y, z); m.scale.set(sx, sy, sz); m.castShadow = !ghost; par.add(m); return m; };
-  box(ch, mt.o, 0, 3.3, 0, 14, 3, 7);
+  const box = (par, mat, x, y, z, sx, sy, sz) => { const m = new THREE.Mesh(S.box, mat); m.position.set(x, y, z); m.scale.set(sx, sy, sz); m.castShadow = !ghost && !rv; par.add(m); return m; };
+  const six = top => ghost ? mt.o : [mt.o, mt.o, top, mt.o, mt.o, mt.o]; // BoxGeometry order: +x -x +y -y +z -z
+  box(ch, six(ghost ? null : M.top), 0, 3.3, 0, 14, 3, 7);
   box(ch, mt.k, 7.15, 2.6, 0, 0.8, 1.2, 6.6); box(ch, mt.k, -7.15, 2.6, 0, 0.8, 1.2, 6.6);
-  box(ch, mt.d, -0.6, 5.85, 0, 6.4, 2.2, 5.6); box(ch, mt.o, -0.7, 7.1, 0, 5.2, 0.5, 5.6);
-  box(ch, mt.w, 4.95, 4.86, 0, 4.2, 0.12, 1.8); box(ch, mt.w, -5.3, 4.86, 0, 3.6, 0.12, 1.8); box(ch, mt.w, -0.7, 7.38, 0, 5.2, 0.12, 1.8);
+  box(ch, mt.d, -0.6, 5.85, 0, 6.4, 2.2, 5.6); box(ch, six(ghost ? null : M.roof), -0.7, 7.1, 0, 5.2, 0.5, 5.6);
+  box(ch, mt.w, 4.95, 4.86, 0, 4.2, 0.12, 1.8); box(ch, mt.w, -5.3, 4.86, 0, 3.6, 0.12, 1.8);
   box(ch, mt.k, -6.3, 5.7, 2.2, 0.5, 2, 0.5); box(ch, mt.k, -6.3, 5.7, -2.2, 0.5, 2, 0.5);
-  box(ch, mt.o, -6.7, 6.8, 0, 2.6, 0.4, 7); box(ch, mt.k, -6.7, 6.8, 3.5, 2.6, 1.3, 0.3); box(ch, mt.k, -6.7, 6.8, -3.5, 2.6, 1.3, 0.3);
+  box(ch, ghost ? mt.o : M.spoil, -6.7, 6.8, 0, 2.6, 0.4, 7); box(ch, mt.k, -6.7, 6.8, 3.5, 2.6, 1.3, 0.3); box(ch, mt.k, -6.7, 6.8, -3.5, 2.6, 1.3, 0.3);
   box(ch, mt.l, 7.6, 3.7, 2.3, 0.2, 0.8, 1.5); box(ch, mt.l, 7.6, 3.7, -2.3, 0.2, 0.8, 1.5);
   box(ch, mt.r, -7.6, 3.7, 2.3, 0.2, 0.7, 1.5); box(ch, mt.r, -7.6, 3.7, -2.3, 0.2, 0.7, 1.5);
   const front = [];
   for (const sx of [1, -1]) for (const sz of [1, -1]) {
     const pv = new THREE.Group(); pv.position.set(sx * 4.4, 1.75, sz * 3.65);
-    const w = new THREE.Mesh(S.wheel, mt.k); w.castShadow = !ghost; pv.add(w);
+    const w = new THREE.Mesh(S.wheel, mt.k); w.castShadow = !ghost && !rv; pv.add(w);
     const h = new THREE.Mesh(S.hub, mt.g); h.position.z = sz * 0.85; pv.add(h);
     root.add(pv); if (sx > 0) front.push(pv);
   }
-  return { root, ch, front };
+  return { root, ch, front, mats: M };
+}
+// paint a car model: body colour on the sides, the livery on the top face, the roof crop on the roof, detail colour on the spoiler
+function applyLivery3D(m, p) {
+  const M = m.mats; if (!M) return;
+  M.side.color.copy(lc(BODY_COLS[p.body])); M.spoil.color.copy(lc(DET_COLS[p.detail]));
+  for (const k of ['top', 'roof']) {
+    const t = mkTex(k === 'top' ? liveryCanvas(p, 256, false) : roofCanvas(p));
+    if (M[k].map) M[k].map.dispose();
+    M[k].map = t; M[k].needsUpdate = true;
+  }
+}
+function syncCarLivery3D() {
+  const g = G3; if (!g.ok || !g.car) return;
+  const k = livKeyOf(profile); if (g.livKey === k) return;
+  g.livKey = k; applyLivery3D(g.car, profile);
+}
+function ensureRival3D(ch) {
+  const g = G3; if (!g.ok || !g.sh) return;
+  if (g.rv && g.rvFor === ch) return;
+  if (g.rv) { g.scene.remove(g.rv.root); disposeModel(g.rv); g.rv = null; }
+  g.rv = makeCarModel('rival'); applyLivery3D(g.rv, ch.liv); g.rv.root.visible = false; g.scene.add(g.rv.root); g.rvFor = ch;
+}
+function disposeModel(m) { const M = m.mats; if (!M) return; for (const k in M) { if (M[k].map) M[k].map.dispose(); M[k].dispose(); } }
+function rivalLabel(show, sx, sy, txt) {
+  const el = $('rivalLbl'); if (!el) return;
+  if (!show) { if (!el.hidden) el.hidden = true; return; }
+  if (el.hidden) el.hidden = false; if (el.textContent !== txt) el.textContent = txt;
+  el.style.transform = 'translate(' + sx.toFixed(1) + 'px,' + sy.toFixed(1) + 'px) translate(-50%,-100%)';
 }
 
 // ----- textures + builders (track dependent) -----
@@ -1569,8 +1895,18 @@ function render3D(dt) {
   for (let i = 0; i < 2; i++) car.front[i].rotation.y = -c.steer * 0.5;
   // ghost
   const gh = g.gh; let gv = false;
-  if (r.best && r.phase !== 'count' && r.tick > 0) { const i = (r.tick - 1) * 3, ga = r.best.ghost; if (i + 2 < ga.length) { gv = true; gh.root.position.set(ga[i] / 10, 0, ga[i + 1] / 10); gh.root.rotation.y = -ga[i + 2] / 1000; } }
+  if (!r.ch && r.best && r.phase !== 'count' && r.tick > 0) { const i = (r.tick - 1) * 3, ga = r.best.ghost; if (i + 2 < ga.length) { gv = true; gh.root.position.set(ga[i] / 10, 0, ga[i + 1] / 10); gh.root.rotation.y = -ga[i + 2] / 1000; } }
   gh.root.visible = gv;
+  // the challenger's painted ghost + name tag
+  const rvm = g.rv; let rvShow = false;
+  if (rvm) {
+    if (r.ch && g.rvFor === r.ch && r.phase !== 'count') {
+      const q = chGhostAt(r.ch, r.tick); rvm.root.position.set(q.x, 0, q.y); rvm.root.rotation.y = -q.a; rvShow = true;
+      g.camera.updateMatrixWorld(); const v = g.tmp.set(q.x, 15, q.y).project(g.camera);
+      if (v.z < 1) rivalLabel(true, (v.x * 0.5 + 0.5) * W, (-v.y * 0.5 + 0.5) * H, nameOf(r.ch.name)); else rivalLabel(false);
+    } else rivalLabel(false);
+    rvm.root.visible = rvShow;
+  } else rivalLabel(false);
   // checkpoint marker + arrow
   const gi = r.nextGate, gt = T.gates[gi], gate = g.gate;
   gate.visible = r.phase !== 'done';
@@ -1656,7 +1992,7 @@ for (const el of [cv, cv3]) {
   el.addEventListener('contextmenu', e => e.preventDefault());
 }
 addEventListener('keydown', e => {
-  if (e.key === 'Escape') { if (!$('welcome').hidden) closeWelcome(true); else if (!$('share').hidden) closeShare(); else if (mode === 'race') exitRace(); return; }
+  if (e.key === 'Escape') { if (!$('garage').hidden) closeGarage(false); else if (!$('chSheet').hidden) closeChallenge(); else if (!$('welcome').hidden) closeWelcome(true); else if (!$('share').hidden) closeShare(); else if (mode === 'race') exitRace(); return; }
   if (mode !== 'race') return;
   const k = e.key; let h = true;
   if (k === 'ArrowLeft' || k === 'a' || k === 'A') keys.l = true;
@@ -1698,8 +2034,8 @@ function openShare() {
   $('copyLink').hidden = !SHARE_BASE; $('share').hidden = false; $('copyCode').focus();
 }
 function closeShare() { $('share').hidden = true; if (shareOpener && shareOpener.focus && shareOpener.isConnected) try { shareOpener.focus(); } catch (e) {} }
-function copyText(text) {
-  const ta = $('codeOut');
+function copyText(text, ta) {
+  ta = ta || $('codeOut');
   const fallback = () => { ta.value = text; ta.focus(); ta.select(); toast('Select and copy the code'); };
   try { navigator.clipboard.writeText(text).then(() => toast('Copied'), fallback); } catch (e) { fallback(); }
 }
@@ -1764,8 +2100,9 @@ function wPath(c, s) {
   let i = 1; while (i <= N && cum[i] <= s) { c.lineTo(pts[i % N][0], pts[i % N][1]); i++; }
   if (i <= N && s > cum[i - 1]) { const q = wAt(s); c.lineTo(q[0], q[1]); }
 }
-function wCar(c, x, y, a) {
+function wCar(c, x, y, a, liv) {
   c.save(); c.translate(x, y); c.rotate(a);
+  if (liv) { c.scale(1.45, 1.45); c.fillStyle = 'rgba(0,0,0,.25)'; rr(c, -5.5 + 1, -3 + 1.4, 11, 6, 1.8); c.fill(); c.imageSmoothingQuality = 'high'; c.drawImage(liv, -5.5, -3, 11, 6); c.fillStyle = 'rgba(20,26,34,.92)'; c.fillRect(1, -2, 2, 4); c.restore(); return; }
   c.fillStyle = 'rgba(0,0,0,.25)'; rr(c, -5.5 + 1, -3 + 1.4, 11, 6, 1.8); c.fill();
   c.fillStyle = C_ACCENT; rr(c, -5.5, -3, 11, 6, 1.8); c.fill();
   c.fillStyle = 'rgba(20,26,34,.92)'; c.fillRect(1, -2, 2, 4); c.fillStyle = '#fff'; c.fillRect(-4.2, -0.5, 4.6, 1);
@@ -1817,21 +2154,29 @@ function drawPreview(c, t) {
   const g = T.gates[0], gx = g.x * f.sc + f.ox, gy = g.y * f.sc + f.oy; c.save(); c.translate(gx, gy); c.rotate(Math.atan2(g.ty, g.tx));
   for (let kk = 0; kk < 4; kk++) for (let r = 0; r < 2; r++) { c.fillStyle = (kk + r) % 2 ? '#111' : '#fff'; c.fillRect(-2.6 + r * 2.6, -5.2 + kk * 2.6, 2.6, 2.6); } c.restore();
   const i = RM ? Math.floor(T.M * 0.12) : Math.floor((t % 4200) / 4200 * T.M) % T.M, q = T.C[i], tn = T.tan[i];
-  wCar(c, q[0] * f.sc + f.ox, q[1] * f.sc + f.oy, Math.atan2(tn[1], tn[0]));
+  wCar(c, q[0] * f.sc + f.ox, q[1] * f.sc + f.oy, Math.atan2(tn[1], tn[0]), welcomeMode === 'challenge' && challenge ? rivalLiv(challenge) : null);
 }
 function wRender(ts) {
   wx.setTransform(wDpr, 0, 0, wDpr, 0, 0); wx.drawImage(wBg, 0, 0, 240, 140);
-  if (welcomeMode === 'friend' && T) drawPreview(wx, ts); else drawIntro(wx, ts % 4000, RM);
+  if ((welcomeMode === 'friend' || welcomeMode === 'challenge') && T) drawPreview(wx, ts); else drawIntro(wx, ts % 4000, RM);
 }
 function wTick(ts) { wRaf = requestAnimationFrame(wTick); if (!document.hidden) wRender(ts); }
+function drawWelcomeCar() {
+  const cv = $('wCar'), d = Math.min(window.devicePixelRatio || 1, 2); cv.width = 160 * d; cv.height = 80 * d;
+  const c = cv.getContext('2d'); c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, cv.width, cv.height);
+  paintCarFlat(c, Object.assign({ name: challenge.name }, challenge.liv), cv.width / 2, cv.height / 2, cv.width * 0.86 / 14, 0);
+}
 function openWelcome(m) {
-  if (m === 'friend' && !T) m = 'generic';
-  const fr = m === 'friend'; welcomeMode = m; hideTip();
+  if (m === 'challenge' && !challenge) m = 'friend';
+  if ((m === 'friend' || m === 'challenge') && !T) m = 'generic';
+  const chm = m === 'challenge', fr = m === 'friend' || chm; welcomeMode = m; hideTip();
   wDpr = Math.min(window.devicePixelRatio || 1, 2); wc.width = 240 * wDpr; wc.height = 140 * wDpr; wMakeBg(); wPrev = null;
-  $('wTitle').textContent = fr ? 'A friend sent you a track' : 'Draw it. Race it. Send it.';
-  const sub = $('wSub'); sub.hidden = !fr; if (fr) sub.textContent = (T.L * UNIT_M / 1000).toFixed(2) + ' km · ' + T.G + ' checkpoints. Set the fastest lap.';
+  $('wTitle').textContent = chm ? nameOf(challenge.name) + ' challenges you!' : fr ? 'A friend sent you a track' : 'Draw it. Race it. Send it.';
+  const sub = $('wSub'); sub.hidden = !fr; sub.classList.toggle('big', chm);
+  if (chm) sub.textContent = fmt(challenge.total / 60) + ' \u00b7 ' + CLASSES[challenge.cls].name; else if (fr) sub.textContent = (T.L * UNIT_M / 1000).toFixed(2) + ' km · ' + T.G + ' checkpoints. Set the fastest lap.';
+  $('wCarRow').hidden = !chm; if (chm) drawWelcomeCar();
   $('wHow').hidden = fr;
-  $('wGo').textContent = fr ? 'Race it' : 'Draw my own track'; $('wAlt').textContent = fr ? 'Draw my own instead' : 'Race the sample first';
+  $('wGo').textContent = chm ? 'Race them' : fr ? 'Race it' : 'Draw my own track'; $('wAlt').textContent = fr ? 'Draw my own instead' : 'Race the sample first';
   welcomeOpener = document.activeElement; $('welcome').hidden = false; $('wGo').focus();
   cancelAnimationFrame(wRaf); if (RM) wRender(0); else wRaf = requestAnimationFrame(wTick);
   dirty = true;
@@ -1842,9 +2187,9 @@ function closeWelcome(restore) {
   if (restore && welcomeOpener && welcomeOpener.focus && welcomeOpener.isConnected) try { welcomeOpener.focus(); } catch (e) {}
 }
 $('wSkip').addEventListener('click', () => closeWelcome(true));
-$('wGo').addEventListener('click', () => { const fr = welcomeMode === 'friend'; closeWelcome(); if (fr) startRace(); else newTrack(); });
+$('wGo').addEventListener('click', () => { const fr = welcomeMode === 'friend' || welcomeMode === 'challenge'; closeWelcome(); if (fr) startRace(); else newTrack(); });
 $('wAlt').addEventListener('click', () => {
-  const fr = welcomeMode === 'friend'; closeWelcome();
+  const fr = welcomeMode === 'friend' || welcomeMode === 'challenge'; closeWelcome();
   if (fr) newTrack(); else { if (origin !== 'sample' || !T) loadSample('kidney'); startRace(); }
 });
 $('welcome').addEventListener('keydown', e => {
@@ -1854,6 +2199,235 @@ $('welcome').addEventListener('keydown', e => {
   if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && (i === f.length - 1)) { e.preventDefault(); f[0].focus(); }
 });
 
+// ---------- garage ----------
+let gD = null, gTool = 1, gOpener = null, gLast = null, gBuilt = false;
+const gPrev = $('gPrev'), gDood = $('gDoodle');
+function mkBtn(cls, label) { const b = document.createElement('button'); b.type = 'button'; b.className = cls; b.setAttribute('aria-label', label); b.setAttribute('aria-pressed', 'false'); return b; }
+function buildGarage() {
+  if (gBuilt) return; gBuilt = true;
+  const sw = (par, cols, key, label) => cols.forEach((col, i) => {
+    const b = mkBtn('swb', label + ' ' + COL_NAMES[i]); b.style.setProperty('--c', col); b.dataset.i = i;
+    b.addEventListener('click', () => { gD[key] = i; gRender(); }); par.appendChild(b);
+  });
+  sw($('gBody'), BODY_COLS, 'body', 'Body'); sw($('gDet'), DET_COLS, 'detail', 'Detail');
+  PATTERNS.forEach((nm, i) => {
+    const b = mkBtn('pc', 'Pattern ' + nm); b.title = nm; b.dataset.i = i; b.appendChild(document.createElement('canvas'));
+    b.addEventListener('click', () => { gD.pattern = i; gRender(); }); $('gPat').appendChild(b);
+  });
+  const tools = $('gTools');
+  [[1, 'White', '#ffffff'], [2, 'Ink', C_INK], [3, 'Detail colour', null], [0, 'Eraser', '#F3F6F8']].forEach(([v, lbl, col]) => {
+    const b = mkBtn('swb', lbl); b.dataset.t = v; if (col) b.style.setProperty('--c', col);
+    if (v === 0) b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15.5L13 6.5a2 2 0 012.8 0l3.7 3.7a2 2 0 010 2.8L12 20.5H7.5L4 17z" fill="#fff" stroke="#16212C" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 11.5l5.5 5.5" stroke="#16212C" stroke-width="1.7"/></svg>';
+    b.addEventListener('click', () => { gTool = v; gRender(); }); tools.appendChild(b);
+  });
+  const cl = document.createElement('button'); cl.type = 'button'; cl.className = 'btn'; cl.id = 'gClear'; cl.textContent = 'Clear doodle';
+  cl.addEventListener('click', () => { gD.dpx.fill(0); gRender(); }); tools.appendChild(cl);
+  $('gDice').addEventListener('click', () => { let n; do { n = [rndInt(ADJ.length), rndInt(ANI.length)]; } while (n[0] === gD.name[0] && n[1] === gD.name[1]); gD.name = n; gRender(); });
+  // number: tap, or hold to count quickly
+  let rep = 0;
+  const bump = d => { gD.num = ((gD.num - 1 + d + 99) % 99) + 1; gRender(); };
+  for (const [id, d] of [['gNumM', -1], ['gNumP', 1]]) {
+    const b = $(id);
+    b.addEventListener('click', e => { if (e.detail === 0) bump(d); });
+    b.addEventListener('pointerdown', e => { if (e.button) return; bump(d); clearTimeout(rep); rep = setTimeout(function again() { bump(d); rep = setTimeout(again, 90); }, 420); });
+    for (const ev of ['pointerup', 'pointerleave', 'pointercancel', 'blur']) b.addEventListener(ev, () => clearTimeout(rep));
+  }
+  const cell = e => { const r = gDood.getBoundingClientRect(); return [clamp(Math.floor((e.clientX - r.left) / r.width * DW), 0, DW - 1), clamp(Math.floor((e.clientY - r.top) / r.height * DH), 0, DH - 1)]; };
+  const put = (x, y) => { gD.dpx[y * DW + x] = gTool; };
+  gDood.addEventListener('pointerdown', e => { e.preventDefault(); try { gDood.setPointerCapture(e.pointerId); } catch (x) {} gLast = cell(e); put(gLast[0], gLast[1]); gDraw(); });
+  gDood.addEventListener('pointermove', e => {
+    if (!gLast) return; const c = cell(e);
+    let x0 = gLast[0], y0 = gLast[1]; const dx = Math.abs(c[0] - x0), dy = -Math.abs(c[1] - y0), sx = x0 < c[0] ? 1 : -1, sy = y0 < c[1] ? 1 : -1; let er = dx + dy;
+    for (;;) { put(x0, y0); if (x0 === c[0] && y0 === c[1]) break; const e2 = 2 * er; if (e2 >= dy) { er += dy; x0 += sx; } if (e2 <= dx) { er += dx; y0 += sy; } }
+    gLast = c; gDraw();
+  });
+  for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) gDood.addEventListener(ev, () => { gLast = null; });
+  gDood.addEventListener('contextmenu', e => e.preventDefault());
+  $('gCancel').addEventListener('click', () => closeGarage(false)); $('gDone').addEventListener('click', () => closeGarage(true));
+  $('garage').addEventListener('keydown', trapTab);
+}
+function trapTab(e) {
+  if (e.key !== 'Tab') return;
+  const f = [...e.currentTarget.querySelectorAll('button,textarea')].filter(b => !b.hidden && b.offsetParent !== null); if (!f.length) return;
+  const i = f.indexOf(document.activeElement);
+  if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+}
+function fitCanvas(cv) {
+  const r = cv.getBoundingClientRect(); if (!r.width) return false;
+  const w = Math.round(r.width * DPR), h = Math.round(r.height * DPR); if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; } return true;
+}
+function paperBg(c, w, h, step, major) {
+  c.fillStyle = C_PAPER; c.fillRect(0, 0, w, h); c.lineWidth = 1;
+  for (const [st, col] of [[step, C_MINOR], [major, C_MAJOR]]) { c.strokeStyle = col; c.beginPath(); for (let x = 0; x <= w; x += st) { c.moveTo(Math.round(x) + 0.5, 0); c.lineTo(Math.round(x) + 0.5, h); } for (let y = 0; y <= h; y += st) { c.moveTo(0, Math.round(y) + 0.5); c.lineTo(w, Math.round(y) + 0.5); } c.stroke(); }
+}
+function gDrawPreview() {
+  if (!fitCanvas(gPrev)) return;
+  const c = gPrev.getContext('2d'), w = gPrev.width, h = gPrev.height;
+  c.setTransform(1, 0, 0, 1, 0, 0); paperBg(c, w, h, 16 * DPR, 80 * DPR);
+  paintCarFlat(c, gD, w / 2, h / 2, w * 0.66 / 14, 0);
+}
+function gDrawDoodle() {
+  if (!fitCanvas(gDood)) return;
+  const c = gDood.getContext('2d'), w = gDood.width, h = gDood.height, k = w / 14;
+  c.setTransform(1, 0, 0, 1, 0, 0); c.fillStyle = '#F3F6F8'; c.fillRect(0, 0, w, h);
+  c.setTransform(k, 0, 0, k, w / 2, h / 2);
+  // faint car outline behind the pixels
+  c.save(); c.globalAlpha = 0.3; c.fillStyle = BODY_COLS[gD.body]; rr(c, -7, -3.5, 14, 7, 2); c.fill(); c.globalAlpha = 1;
+  c.strokeStyle = 'rgba(22,33,44,.45)'; c.lineWidth = 0.14; rr(c, -7, -3.5, 14, 7, 2); c.stroke();
+  c.fillStyle = 'rgba(22,33,44,.3)'; c.fillRect(1.4, -2.4, 2.2, 4.8);
+  c.setLineDash([0.35, 0.3]); c.strokeStyle = 'rgba(22,33,44,.4)'; c.lineWidth = 0.1; c.beginPath(); c.arc(-1, 0, 2.25, 0, 6.2832); c.stroke(); c.restore();
+  // pixels
+  const cw = 14 / DW, det = DET_COLS[gD.detail];
+  for (let j = 0; j < gD.dpx.length; j++) { const v = gD.dpx[j]; if (!v) continue; c.fillStyle = v === 1 ? '#fff' : v === 2 ? C_INK : det; c.fillRect(-7 + (j % DW) * cw, -3.5 + ((j / DW) | 0) * cw, cw, cw); if (v === 1) { c.strokeStyle = 'rgba(22,33,44,.35)'; c.lineWidth = 0.05; c.strokeRect(-7 + (j % DW) * cw, -3.5 + ((j / DW) | 0) * cw, cw, cw); } }
+  c.strokeStyle = 'rgba(22,33,44,.1)'; c.lineWidth = 0.03; c.beginPath();
+  for (let i = 0; i <= DW; i++) { c.moveTo(-7 + i * cw, -3.5); c.lineTo(-7 + i * cw, 3.5); } for (let i = 0; i <= DH; i++) { c.moveTo(-7, -3.5 + i * cw); c.lineTo(7, -3.5 + i * cw); } c.stroke();
+}
+function gDraw() { gDrawPreview(); gDrawDoodle(); }
+function gRender() {
+  $('gName').textContent = nameOf(gD.name); $('gNum').textContent = gD.num;
+  document.querySelectorAll('#gBody .swb').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.i === gD.body)));
+  document.querySelectorAll('#gDet .swb').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.i === gD.detail)));
+  document.querySelectorAll('#gTools .swb').forEach(b => { b.setAttribute('aria-pressed', String(+b.dataset.t === gTool)); if (b.dataset.t === '3') b.style.setProperty('--c', DET_COLS[gD.detail]); });
+  document.querySelectorAll('#gPat .pc').forEach(b => {
+    const i = +b.dataset.i; b.setAttribute('aria-pressed', String(i === gD.pattern));
+    const cv = b.firstChild, w = Math.round(64 * DPR), h = Math.round(32 * DPR); if (cv.width !== w) { cv.width = w; cv.height = h; }
+    const c = cv.getContext('2d'); c.setTransform(1, 0, 0, 1, 0, 0); c.clearRect(0, 0, w, h);
+    const k = w * 0.94 / 14; c.setTransform(k, 0, 0, k, w / 2, h / 2); liveryDraw(c, { body: gD.body, detail: gD.detail, pattern: i, noNum: true, num: 0 }, true);
+  });
+  gDraw();
+}
+function openGarage() {
+  if (!$('garage').hidden) return; buildGarage();
+  gOpener = document.activeElement; gTool = 1;
+  gD = { name: profile.name.slice(), body: profile.body, detail: profile.detail, pattern: profile.pattern, num: profile.num, dpx: doodleDecode(profile.doodle) };
+  $('garage').hidden = false; $('gDone').focus(); gRender(); gRender();
+  $('garage').querySelector('.gbody').scrollTop = 0;
+}
+function closeGarage(save) {
+  if ($('garage').hidden) return;
+  if (save && gD) {
+    profile = { name: gD.name.slice(), body: gD.body, detail: gD.detail, pattern: gD.pattern, num: gD.num, doodle: doodleEncode(gD.dpx) };
+    lsSet('sr:profile', JSON.stringify(profile)); flagSet('sr:garaged'); onProfileChanged(); $('nudge').hidden = true; toast('Saved. Looking fast!');
+  }
+  $('garage').hidden = true; gLast = null;
+  if (gOpener && gOpener.focus && gOpener.isConnected && !gOpener.hidden) try { gOpener.focus(); } catch (e) {}
+}
+$('garageBtn').addEventListener('click', openGarage);
+$('nudgeBtn').addEventListener('click', openGarage);
+
+// ---------- confetti ----------
+let confRaf = 0;
+function stopConfetti() { cancelAnimationFrame(confRaf); confRaf = 0; const cvs = $('confetti'); if (cvs && cvs.width) cvs.getContext('2d').clearRect(0, 0, cvs.width, cvs.height); }
+function confettiBurst() {
+  if (RM) return; stopConfetti();
+  const cvs = $('confetti'), c = cvs.getContext('2d'); cvs.width = Math.round(W * DPR); cvs.height = Math.round(H * DPR);
+  const cols = ['#FF5B1F', '#FFD23F', '#3BB273', '#2F80ED', '#FF77B7', '#8E5CF7', '#ffffff'], P = [];
+  for (let i = 0; i < 130; i++) { const an = -Math.PI / 2 + (Math.random() - 0.5) * 2.1, sp = 380 + Math.random() * 620; P.push({ x: W / 2 + (Math.random() - 0.5) * 60, y: H * 0.5, vx: Math.cos(an) * sp, vy: Math.sin(an) * sp, r: Math.random() * 6.28, vr: (Math.random() - 0.5) * 14, w: 6 + Math.random() * 7, h: 4 + Math.random() * 5, col: cols[i % cols.length] }); }
+  let t0 = performance.now(), age = 0;
+  const tick = now => {
+    const dt = Math.min(0.05, (now - t0) / 1000); t0 = now; age += dt;
+    c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, W, H);
+    for (const p of P) { p.vy += 1000 * dt; p.vx *= 0.992; p.x += p.vx * dt; p.y += p.vy * dt; p.r += p.vr * dt; c.save(); c.translate(p.x, p.y); c.rotate(p.r); c.fillStyle = p.col; c.globalAlpha = Math.max(0, Math.min(1, 2.8 - age)); c.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); c.restore(); }
+    if (age < 2.8) confRaf = requestAnimationFrame(tick); else stopConfetti();
+  };
+  confRaf = requestAnimationFrame(tick);
+}
+
+// ---------- challenge sheet + share card ----------
+function renderShareCard(o) {
+  const S = 1080, cvs = document.createElement('canvas'); cvs.width = cvs.height = S; const c = cvs.getContext('2d');
+  const FONT = "'Chakra Petch', system-ui, sans-serif", prof = Object.assign({ name: o.name }, o.liv);
+  paperBg(c, S, S, 30, 150);
+  // banner
+  c.fillStyle = C_INK; c.fillRect(0, 0, S, 196);
+  for (let i = 0; i < S / 24; i++) for (let r = 0; r < 2; r++) { c.fillStyle = (i + r) % 2 ? '#fff' : '#111'; c.fillRect(i * 24, 196 + r * 24, 24, 24); }
+  c.textAlign = 'center'; c.textBaseline = 'alphabetic'; c.fillStyle = C_ACCENT;
+  let fs = 124; c.font = '700 ' + fs + 'px ' + FONT; const tw = c.measureText('BEAT MY TIME!').width; if (tw > 940) { fs = Math.floor(fs * 940 / tw); c.font = '700 ' + fs + 'px ' + FONT; }
+  c.fillText('BEAT MY TIME!', S / 2, 118);
+  c.fillStyle = '#9fb3c4'; c.font = '600 30px ' + FONT; c.fillText('A SCRIBBLE RALLY TRACK', S / 2, 168);
+  // the track, fitted into the middle
+  const Tk = T, ctrl = Tk.C; let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+  const acc = (x, y, m) => { x0 = Math.min(x0, x - m); y0 = Math.min(y0, y - m); x1 = Math.max(x1, x + m); y1 = Math.max(y1, y + m); };
+  for (const q of ctrl) acc(q[0], q[1], ROAD_W / 2 + KERB_W); def.patches.forEach(pa => pa.pts.forEach(q => acc(q[0], q[1], PATCH_W / 2)));
+  const rx = 130, ry = 285, rw = S - 2 * rx, rh = 470 - 0, sc = Math.min(rw / (x1 - x0), rh / (y1 - y0)), ox = rx + (rw - (x1 - x0) * sc) / 2 - x0 * sc, oy = ry + (rh - (y1 - y0) * sc) / 2 - y0 * sc;
+  const k = Math.max(1, 50 / (ROAD_W * sc));
+  c.save(); c.translate(ox, oy); c.scale(sc, sc); c.lineJoin = 'round'; c.lineCap = 'round';
+  for (const p of Tk.patches) { c.lineWidth = PATCH_W; if (p.t === 1) { c.strokeStyle = C_GRAVEL; c.stroke(p.path); } else { c.strokeStyle = '#A9D3E6'; c.stroke(p.path); c.lineWidth = PATCH_W - 8; c.strokeStyle = C_ICE; c.stroke(p.path); } }
+  c.lineWidth = (ROAD_W + 2 * KERB_W) * k; c.strokeStyle = '#F2F2EE'; c.stroke(Tk.road);
+  c.lineCap = 'butt'; c.setLineDash([14 * k, 14 * k]); c.strokeStyle = '#D63B2F'; c.stroke(Tk.road); c.setLineDash([]); c.lineCap = 'round';
+  c.lineWidth = ROAD_W * k; c.strokeStyle = C_ASPH; c.stroke(Tk.road);
+  c.lineWidth = 1.4 * k; c.lineCap = 'butt'; c.setLineDash([12 * k, 16 * k]); c.strokeStyle = 'rgba(255,255,255,.4)'; c.stroke(Tk.road); c.setLineDash([]);
+  const all = Tk.st; for (const s of all) { Tk.st = [s]; c.save(); c.translate(s.x, s.y); c.scale(k, k); c.translate(-s.x, -s.y); drawStamps(c, 0, false); c.restore(); } Tk.st = all;
+  const g = Tk.gates[0]; c.save(); c.translate(g.x, g.y); c.rotate(Math.atan2(g.ty, g.tx)); const cs = ROAD_W * k / 8;
+  for (let row = 0; row < 2; row++) for (let q = 0; q < 8; q++) { c.fillStyle = (row + q) % 2 ? '#111' : '#fff'; c.fillRect(-cs + row * cs, -ROAD_W * k / 2 + q * cs, cs, cs); }
+  c.restore(); c.restore();
+  // painted car, big, on the start line
+  const gx = g.x * sc + ox, gy = g.y * sc + oy, ang = Math.atan2(g.ty, g.tx), ck = 17;
+  c.save(); c.strokeStyle = 'rgba(22,33,44,.35)'; c.lineWidth = 7; c.lineCap = 'round';
+  for (const off of [-22, 0, 22]) { c.beginPath(); c.moveTo(gx - Math.cos(ang) * 130 - Math.sin(ang) * off, gy - Math.sin(ang) * 130 + Math.cos(ang) * off); c.lineTo(gx - Math.cos(ang) * (95 + Math.abs(off)) - Math.sin(ang) * off, gy - Math.sin(ang) * (95 + Math.abs(off)) + Math.cos(ang) * off); c.stroke(); }
+  c.restore();
+  paintCarFlat(c, prof, gx, gy, ck, ang);
+  // bottom panel
+  c.fillStyle = C_INK; rr(c, 50, 782, S - 100, 236, 30); c.fill();
+  c.textAlign = 'left'; c.fillStyle = '#fff'; c.font = '700 58px ' + FONT;
+  const nm = nameOf(o.name); let nf = 58; while (c.measureText(nm).width > 560 && nf > 30) { nf -= 2; c.font = '700 ' + nf + 'px ' + FONT; }
+  c.fillText(nm, 90, 852);
+  const cn = CLASSES[o.cls].name.toUpperCase() + ' CLASS'; c.font = '700 30px ' + FONT; const cw = c.measureText(cn).width + 44;
+  c.fillStyle = C_ACCENT; rr(c, S - 90 - cw, 812, cw, 56, 28); c.fill(); c.fillStyle = C_ACCENT_INK; c.textAlign = 'center'; c.fillText(cn, S - 90 - cw / 2, 851);
+  c.textAlign = 'left'; c.fillStyle = '#fff'; c.font = '700 136px ' + FONT; c.fillText(fmt(o.total / 60), 86, 984);
+  c.textAlign = 'right'; c.fillStyle = '#9fb3c4'; c.font = '600 32px ' + FONT; c.fillText('MY TIME', S - 90, 984);
+  c.textAlign = 'center'; c.fillStyle = 'rgba(22,33,44,.7)'; c.font = '700 30px ' + FONT; c.fillText('SCRIBBLE RALLY', S / 2, 1058);
+  return cvs;
+}
+const C_ACCENT_INK = '#1A0E07';
+let chS = { blob: null, link: '', text: '', opener: null, seq: 0 };
+async function openChallenge() {
+  const o = makeChallengeObj(); if (!o) { toast('Race this track first.'); return; }
+  let cc; try { cc = encodeChallenge(o); } catch (e) { toast("Couldn't make the challenge."); return; }
+  const link = SHARE_BASE + '#' + cc, text = 'Can you beat my time on my Scribble Rally track? ' + fmt(o.total / 60) + ' (' + CLASSES[o.cls].name + ')', seq = ++chS.seq;
+  Object.assign(chS, { blob: null, link, text, opener: document.activeElement });
+  $('chLink').value = link; $('chTxt').textContent = text; $('chImg').removeAttribute('src');
+  $('chShare').hidden = !navigator.share;
+  $('chSheet').hidden = false; ($('chShare').hidden ? $('chCopy') : $('chShare')).focus();
+  try { await Promise.race([document.fonts.load("700 60px 'Chakra Petch'"), new Promise(r => setTimeout(r, 700))]); } catch (e) {}
+  if (seq !== chS.seq || $('chSheet').hidden) return;
+  const cvs = renderShareCard(o); $('chImg').src = cvs.toDataURL('image/png');
+  try { cvs.toBlob(b => { if (seq === chS.seq) chS.blob = b; }, 'image/png'); } catch (e) {}
+}
+function closeChallenge() {
+  if ($('chSheet').hidden) return; chS.seq++; $('chSheet').hidden = true;
+  const o = chS.opener; if (o && o.focus && o.isConnected && !o.hidden) try { o.focus(); } catch (e) {}
+}
+async function shareChallenge() {
+  const text = chS.text, url = chS.link;
+  try {
+    if (chS.blob && navigator.canShare) {
+      const f = new File([chS.blob], 'scribble-rally-challenge.png', { type: 'image/png' });
+      if (navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], text, url }); return; }
+    }
+    if (navigator.share) await navigator.share({ text, url });
+  } catch (e) { if (e && e.name === 'AbortError') return; toast("Couldn't share. Copy the link instead."); }
+}
+$('chBtn').addEventListener('click', openChallenge);
+$('chShare').addEventListener('click', shareChallenge);
+$('chCopy').addEventListener('click', () => copyText(chS.link, $('chLink')));
+$('chClose').addEventListener('click', closeChallenge);
+$('chSheet').addEventListener('keydown', trapTab);
+
+// ---------- open a challenge link ----------
+function applyChallenge(ch) {
+  const d = decodeTrack(ch.track); buildTrack(d); d.cls = ch.cls;
+  if (mode === 'race') exitRace();
+  if (def) pushUndo();
+  setDef(d, true); lsSet('sr:cls', String(cls)); setOrigin('loaded');
+  challenge = ch; challenge.code = challenge.code || null;
+}
+function loadChallengeLink(c) {
+  let ch; try { ch = decodeChallenge(c); ch.code = c; decodeTrack(ch.track); } catch (e) { toast("That challenge link doesn't work."); return false; }
+  try { applyChallenge(ch); } catch (e) { toast("That challenge link doesn't work."); return false; }
+  $('results').hidden = true; $('share').hidden = true; closeGarage(false); closeChallenge(); closeWelcome(false);
+  openWelcome('challenge'); return true;
+}
 // ---------- photo import ----------
 function photoToRaw(img) {
   const k = Math.min(1, 220 / Math.max(img.naturalWidth, img.naturalHeight));
@@ -1914,6 +2488,7 @@ function resize() {
   cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
   if (G3.ok) { G3.r.setSize(W, H, false); G3.camera.aspect = W / H; G3.camera.updateProjectionMatrix(); G3.du.mat.uniforms.uScale.value = cv3.height / (2 * Math.tan(FOV * Math.PI / 360)); }
   if (mode === 'draw') fitView(); dirty = true; if (!$('tip').hidden) placeTip(); if (!$('stampPick').hidden) placePicker();
+  if (!$('garage').hidden && gD) gDraw();
 }
 addEventListener('resize', resize);
 let last = 0, acc = 0;
@@ -1928,31 +2503,39 @@ function frame(t) {
 }
 document.addEventListener('visibilitychange', () => { acc = 0; last = performance.now(); });
 addEventListener('hashchange', () => {
+  if (/^#c/.test(location.hash)) { loadChallengeLink(location.hash.slice(1)); return; }
   const m = /^#(t[0-9a-f]+)$/.exec(location.hash);
   if (m && m[1] !== code) { try { loadCode(m[1]); } catch (e) { toast("That code isn't a valid track."); } }
 });
-window.claude?.hot?.snapshot?.(() => ({ code, origin, welcome: welcomeMode, flags: ['sr:onb', 'sr:onb-drawn', 'sr:onb-tip'].filter(flagGet) }));
+window.claude?.hot?.snapshot?.(() => ({ code, origin, welcome: welcomeMode, ch: challenge && challenge.code || null, flags: ['sr:onb', 'sr:onb-drawn', 'sr:onb-tip', 'sr:garaged', 'sr:nudge'].filter(flagGet) }));
 
 function boot(data) {
   data = data || {};
   const hot = typeof data.code === 'string';
   if (hot && Array.isArray(data.flags)) data.flags.forEach(flagSet);
-  { const v = parseInt(lsGet('sr:cls'), 10); if (v >= 0 && v <= 2) cls = v; }
-  makePatterns(); initGL(); resize(); updateUI(); syncViewBtns();
+  { const v = parseInt(lsGet('sr:cls'), 10); if (v >= 0 && v <= 3) cls = v; }
+  const chHash = !hot && /^#c/.test(location.hash) ? location.hash.slice(1) : null; // read before anything rewrites the hash
+  makePatterns(); initGL(); resize(); updateUI(); syncViewBtns(); onProfileChanged();
   if (!G3.ok) toast("3D view isn't available on this device.");
   const seen = flagGet('sr:onb'), last = lsGet('sr:last'), hashCode = /^#t[0-9a-f]+$/.test(location.hash) ? location.hash.slice(1) : null;
-  let ok = false, friend = false;
+  let ok = false, friend = false, chOpen = false, chBad = false;
   const tryLoad = c => { try { const d = decodeTrack(c); buildTrack(d); setDef(d, true); return true; } catch (e) { return false; } };
   if (hot && data.code) { ok = tryLoad(data.code); if (ok) setOrigin(data.origin || 'own'); }
   else if (hot) { ok = true; setDef(null, true); setOrigin(null); }
+  if (chHash) {
+    try { const ch = decodeChallenge(chHash); ch.code = chHash; applyChallenge(ch); ok = chOpen = true; } catch (e) { chBad = true; }
+  }
   if (!ok && hashCode && tryLoad(hashCode)) { ok = true; friend = !hot && hashCode !== last; setOrigin(friend ? 'loaded' : (lsGet('sr:origin') || 'own')); }
   if (!ok && last && tryLoad(last)) { ok = true; setOrigin(lsGet('sr:origin') || 'own'); }
   if (!ok && last === '' && seen) { ok = true; setDef(null, true); setOrigin(null); }
   if (!ok) { setDef(sampleKidney(), true); setOrigin('sample'); }
+  if (hot && typeof data.ch === 'string') { try { const ch = decodeChallenge(data.ch); ch.code = data.ch; if (ch.track === code || ch.track === geo) challenge = ch; } catch (e) {} }
   if (hot) { if (data.welcome) openWelcome(data.welcome); }
+  else if (chOpen) openWelcome('challenge');
   else if (friend) openWelcome('friend');
   else if (!seen) openWelcome('generic');
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (mode === 'draw' && !stroke && !userTouched) fitView(); });
+  if (chBad) toast("That challenge link doesn't work.");
   requestAnimationFrame(frame);
 }
 window.__sr = {
@@ -1966,6 +2549,13 @@ window.__sr = {
   get stars() { return race ? race.stars : null; }, get missions() { return race ? race.mis : null; }, get stamps() { return def ? def.stamps : null; },
   addStamp(t, x, y) { const o = stampT; stampT = t; try { return tapStamp(x, y); } finally { stampT = o; } }, get misMask() { return misMask(); },
   get onb() { return { welcome: welcomeMode || 'none', guide: guideOn(), seen: flagGet('sr:onb'), drawn: flagGet('sr:onb-drawn'), tipSeen: flagGet('sr:onb-tip'), tip: !$('tip').hidden, pulse: $('raceBtn').classList.contains('pulse'), connector: !!(fail && performance.now() < failT), origin, isSample: origin === 'sample', cta: $('resCta').hidden ? null : $('resCta').dataset.kind, tool }; },
+  get profile() { return JSON.parse(JSON.stringify(profile)); }, set profile(p) { setProfile(p); },
+  encodeChallenge, decodeChallenge, get challenge() { return challenge; }, makeChallengeObj, chGhostAt,
+  makeChallengeCode() { const o = makeChallengeObj(); return o ? encodeChallenge(o) : null; },
+  shareCardDataURL() { const o = makeChallengeObj(); return o ? renderShareCard(o).toDataURL('image/png') : null; },
+  get liveryCanvas() { return myLiv2d(); },
+  get liv3d() { const m = G3.car && G3.car.mats; if (!m) return null; const hx = c => '#' + c.clone().convertLinearToSRGB().getHexString(); return { side: hx(m.side.color), spoil: hx(m.spoil.color), top: m.top.map && m.top.map.image, roof: m.roof.map && m.roof.map.image, rival: !!G3.rv, rivalVisible: !!(G3.rv && G3.rv.root.visible) }; },
+  applyChallengeLink(c) { return loadChallengeLink(c); },
   newTrack, resetOnboarding() { ['sr:onb', 'sr:onb-drawn', 'sr:onb-tip'].forEach(flagClear); hideTip(); openWelcome('generic'); }, get geo() { return geo; }, setClass, get cls() { return cls; }
 };
 window.claude?.hot?.ready ? window.claude.hot.ready(boot) : boot(window.claude?.hot?.data ?? {});
